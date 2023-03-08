@@ -58,6 +58,17 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - res/fonts/
+
+  fonts:
+    - family: Google Sans
+      fonts:
+        - asset: res/fonts/GoogleSans-Regular.ttf
+    - family: Proxima Nova
+      fonts:
+        - asset: res/fonts/Proxima Nova Font.otf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
