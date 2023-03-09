@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/app_theme.dart';
+import '/AppColors.dart';
 
 class ConnexionPage extends StatefulWidget {
   final String title = "Connexion";
@@ -17,17 +17,21 @@ class _ConnexionPageState extends State<ConnexionPage> {
       ),*/
       body: Center(
         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
               "Bienvenue !",
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const Text("Veuillez vous connecter"),
+            const Text("Veuillez vous connecter ou créer un nouveau compte pour utiliser l'application"),
             const TextField(
               obscureText: true,
+
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Password',
+                labelText: 'E-mail',
+                filled: true,
+                fillColor: AppColors.contrastColor,
               ),
             )
           ]

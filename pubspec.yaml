@@ -60,11 +60,12 @@ flutter:
 
   assets:
     - res/fonts/
+    - res/svg/
 
   fonts:
     - family: Google Sans
       fonts:
-        - asset: res/fonts/GoogleSans-Regular.ttf
+        - asset: res/fonts/GoogleSans-Bold.ttf
     - family: Proxima Nova
       fonts:
         - asset: res/fonts/Proxima Nova Font.otf
