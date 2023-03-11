@@ -21,6 +21,7 @@ class AppThemeDataFactory {
         fontFamily: "Google Sans",
         color: AppColors.textColor,
       ),
+      // TextFields and buttons
       bodyLarge: TextStyle(
         fontSize: 15,
         fontFamily: "Proxima Nova",
