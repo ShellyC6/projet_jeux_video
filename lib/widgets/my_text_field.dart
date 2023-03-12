@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import '/app_colors.dart';
 
 class MyTextField extends StatefulWidget {
-  const MyTextField({super.key, required this.text});
+  const MyTextField({super.key, required this.text, required this.obscureText});
 
   final String text;
+  final bool obscureText;
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -15,7 +16,7 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     return TextField(
       style: Theme.of(context).textTheme.bodyLarge,
-      obscureText: true,
+      obscureText: widget.obscureText,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
         hintText: widget.text,
