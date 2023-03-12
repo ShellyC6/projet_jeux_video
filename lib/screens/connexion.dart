@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import '/AppColors.dart';
+import '/app_colors.dart';
+import '/widgets/my_text_field.dart';
 
 class ConnexionPage extends StatefulWidget {
   final String title = "Connexion";
+
+  const ConnexionPage({super.key});
 
   @override
   State<ConnexionPage> createState() => _ConnexionPageState();
@@ -21,54 +24,25 @@ class _ConnexionPageState extends State<ConnexionPage> {
             //mainAxisAlignment: MainAxisAlignment.center,
             //crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+
             Text(
               "Bienvenue !",
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Padding(
-              padding: EdgeInsets.only(left: 65, right: 65),
+              padding: const EdgeInsets.only(left: 65, right: 65),
               child: Text(
                 "Veuillez vous connecter ou créer un nouveau compte pour utiliser l'application",
                 style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            TextField(
-              style: Theme.of(context).textTheme.bodyLarge,
-              obscureText: true,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                hintText: 'E-mail',
-                hintStyle: Theme.of(context).textTheme.bodyLarge,
-                filled: true,
-                border: InputBorder.none,
-                fillColor: AppColors.contrastColor,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextField(
-              style: Theme.of(context).textTheme.bodyLarge,
-              obscureText: true,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                hintText: 'Mot de passe',
-                hintStyle: Theme.of(context).textTheme.bodyLarge,
-                filled: true,
-                border: InputBorder.none,
-                fillColor: AppColors.contrastColor,
-              ),
-            ),
-            const SizedBox(
-              height: 70,
-            ),
+            const SizedBox(height: 30),
+            const MyTextField(text: "E-mail"),
+            const SizedBox(height: 10),
+            const MyTextField(text: "Mot de passe"),
+            const SizedBox(height: 70),
             SizedBox(
               width: double.infinity,
               child: ClipRRect(

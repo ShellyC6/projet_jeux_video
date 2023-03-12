@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'AppColors.dart';
+import 'app_colors.dart';
 
 class AppThemeDataFactory {
   static ThemeData prepareThemeData() => ThemeData(

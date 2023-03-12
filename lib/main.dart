@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Game Store',
       theme: AppThemeDataFactory.prepareThemeData(),
-      home: ConnexionPage(),
+      home: const ConnexionPage(),
     );
   }
 }
