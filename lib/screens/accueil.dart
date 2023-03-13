@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/app_colors.dart';
 import '/widgets/search_bar.dart';
+import '/widgets/apercu.dart';
 
 class AccueilPage extends StatefulWidget {
   const AccueilPage({super.key});
@@ -21,7 +22,13 @@ class _AccueilPageState extends State<AccueilPage> {
                 "Accueil",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              SearchBar(text: "Rechercher un jeu...")
+              SearchBar(text: "Rechercher un jeu..."),
+              const SizedBox(height: 50),
+              Apercu(),
+              const SizedBox(height: 10),
+              Apercu(),
+              const SizedBox(height: 10),
+              Apercu(),
             ]
         ),
       ),
