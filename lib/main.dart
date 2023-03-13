@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_theme.dart';
 import 'screens/connexion.dart';
 import 'screens/inscription.dart';
+import 'screens/accueil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Game Store',
       theme: AppThemeDataFactory.prepareThemeData(),
-      home: const InscriptionPage(),
+      home: const AccueilPage(),
     );
   }
 }

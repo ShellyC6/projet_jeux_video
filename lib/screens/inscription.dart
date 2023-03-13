@@ -28,15 +28,15 @@ class _InscriptionPageState extends State<InscriptionPage> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 20),
-              /*Padding(
-                padding: const EdgeInsets.only(left: 65, right: 65),
-                child:*/ Text(
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Text(
                   "Veuillez saisir ces différentes informations, afin que vos listes soient sauvegardées.",
                   style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.center,
-                //),
+                ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const MyTextField(text: "Nom d'utilisateur", obscureText: false,),
               const SizedBox(height: 10),
               const MyTextField(text: "E-mail", obscureText: false,),

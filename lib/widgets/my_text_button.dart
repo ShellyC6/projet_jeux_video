@@ -9,7 +9,9 @@ class MyTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(!type){  // Full Background
+
+    // Full Background
+    if(!type){
       return SizedBox(
         width: double.infinity,
         child: ClipRRect(
@@ -39,9 +41,12 @@ class MyTextButton extends StatelessWidget {
           ),
         ),
       );
-    } else {  // Empty background
+
+      // Empty background
+    } else {
       return SizedBox(
         width: double.infinity,
+        height: 50,
         child: TextButton(
           onPressed: (){
             print("Bouton $text");

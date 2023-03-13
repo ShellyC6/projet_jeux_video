@@ -42,7 +42,7 @@ class _ConnexionPageState extends State<ConnexionPage> {
             const MyTextField(text: "Mot de passe", obscureText: true,),
             const SizedBox(height: 70),
             const MyTextButton(type: false, text: "Se connecter"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             const MyTextButton(type: true, text: "Créer un nouveau compte"),
             Expanded(
               child: Align(
