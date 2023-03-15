@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/app_colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({super.key, required this.text});
@@ -31,12 +32,9 @@ class _SearchBarState extends State<SearchBar> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(
-              Icons.search,
-              color: AppColors.accentColor,
-            ),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: SvgPicture.asset("res/svg/search.svg")
           ),
         ],
       ),
