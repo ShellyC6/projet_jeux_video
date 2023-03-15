@@ -4,6 +4,8 @@ import 'screens/connexion.dart';
 import 'screens/inscription.dart';
 import 'screens/accueil.dart';
 import 'screens/recherche.dart';
+import 'screens/wishlist.dart';
+import 'screens/likes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Game Store',
       theme: AppThemeDataFactory.prepareThemeData(),
-      home: const RecherchePage(),
+      home: const LikesPage(),
     );
   }
 }
