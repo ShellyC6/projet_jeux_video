@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '/app_colors.dart';
 import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
+import '/widgets/pub.dart';
 
 class AccueilPage extends StatefulWidget {
   const AccueilPage({super.key});
@@ -42,7 +43,7 @@ class _AccueilPageState extends State<AccueilPage> {
           children: <Widget>[
             const SearchBar(text: "Rechercher un jeu..."),
             const SizedBox(height: 10),
-            // Mettre la pub ici
+            const Pub(),
             const SizedBox(height: 30),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

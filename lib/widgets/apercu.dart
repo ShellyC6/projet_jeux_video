@@ -24,7 +24,7 @@ class _ApercuState extends State<Apercu> {
                   children: <Widget>[
                     Padding(
                         padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 10),
-                        child: Image.asset("res/jeu.png",height: 80,)
+                        child: Image.asset("res/img/jeu.png",height: 80,)
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
