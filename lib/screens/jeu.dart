@@ -54,11 +54,11 @@ class _JeuPageState extends State<JeuPage> {
           Column(
             children: <Widget>[
               const Padding(
-                padding: EdgeInsets.only(left:15, right: 15, top:250),
+                padding: EdgeInsets.only(left:20, right: 20, top:250),
                 child: Apercu(detail: false),
               ),
               Padding(
-                padding: const EdgeInsets.only(left:10, right: 10, top:10),
+                padding: const EdgeInsets.only(left:10, right: 10, top:20),
                 child : Column(
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   //mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +108,7 @@ class _JeuPageState extends State<JeuPage> {
                                     shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(Radius.zero))
                                 ),
-                                child: Text("AVIS"),
+                                child: const Text("AVIS"),
                               ),
                             ),
                           ),
