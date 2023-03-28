@@ -33,11 +33,11 @@ class _LikesPageState extends State<LikesPage> {
         child: Column(
             children: const <Widget>[
               SizedBox(height: 10),
-              Apercu(),
+              Apercu(detail: true),
               SizedBox(height: 10),
-              Apercu(),
+              Apercu(detail: true),
               SizedBox(height: 10),
-              Apercu(),
+              Apercu(detail: true),
             ]
         ),
       ),

@@ -61,11 +61,11 @@ class _AccueilPageState extends State<AccueilPage> {
                 ]
             ),
             const SizedBox(height: 10),
-            Apercu(),
+            Apercu(detail: true),
             const SizedBox(height: 10),
-            Apercu(),
+            Apercu(detail: true),
             const SizedBox(height: 10),
-            Apercu(),
+            Apercu(detail: true),
           ]
         ),
       ),

@@ -50,11 +50,11 @@ class _RecherchePageState extends State<RecherchePage> {
                   ]
               ),
               const SizedBox(height: 10),
-              Apercu(),
+              Apercu(detail: true),
               const SizedBox(height: 10),
-              Apercu(),
+              Apercu(detail: true),
               const SizedBox(height: 10),
-              Apercu(),
+              Apercu(detail: true),
             ]
         ),
       ),
