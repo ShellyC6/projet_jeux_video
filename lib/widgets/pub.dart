@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_jeux_video/screens/jeu.dart';
 import '/app_colors.dart';
 import 'my_text_button.dart';
 
@@ -56,6 +57,9 @@ class Pub extends StatelessWidget {
                                 TextButton(
                                   onPressed: (){
                                     print("Bouton En Savoir Plus");
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (BuildContext context) => const JeuPage()),
+                                    );
                                   },
                                   style: TextButton.styleFrom(
                                     textStyle: Theme.of(context).textTheme.bodyLarge,

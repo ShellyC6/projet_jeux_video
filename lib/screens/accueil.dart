@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projet_jeux_video/screens/likes.dart';
+import 'package:projet_jeux_video/screens/wishlist.dart';
 import '/app_colors.dart';
 import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
@@ -18,6 +20,7 @@ class _AccueilPageState extends State<AccueilPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
+        automaticallyImplyLeading: false,
         title: Text(
           'Accueil',
           style: Theme.of(context).textTheme.titleMedium,
@@ -26,12 +29,18 @@ class _AccueilPageState extends State<AccueilPage> {
           IconButton(
               onPressed: (){
                 print("Bouton Like");
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) => LikesPage()),
+                );
               },
               icon: SvgPicture.asset("res/svg/like.svg"),
           ),
           IconButton(
             onPressed: (){
               print("Bouton WishList");
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => WishlistPage()),
+              );
             },
             icon: SvgPicture.asset("res/svg/whishlist.svg"),
           )
@@ -41,7 +50,7 @@ class _AccueilPageState extends State<AccueilPage> {
         padding: const EdgeInsets.only(left:10, bottom: 10, right: 10, top:10),
         child: Column(
           children: <Widget>[
-            const SearchBar(text: "Rechercher un jeu..."),
+            SearchBar(text: "Rechercher un jeu..."),
             const SizedBox(height: 10),
             const Pub(),
             const SizedBox(height: 30),

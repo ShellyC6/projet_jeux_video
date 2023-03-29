@@ -18,12 +18,12 @@ class _JeuPageState extends State<JeuPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
-        leading: IconButton(
+        /*leading: IconButton(
           onPressed: (){
             print("Bouton Back");
           },
           icon: SvgPicture.asset("res/svg/back.svg"),
-        ),
+        ),*/
         title: Text(
           'Détail du jeu',
           style: Theme.of(context).textTheme.titleMedium,

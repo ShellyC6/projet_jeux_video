@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_jeux_video/screens/jeu.dart';
 import '/app_colors.dart';
 
 class Apercu extends StatefulWidget {
@@ -93,6 +94,9 @@ class _ApercuState extends State<Apercu> {
                       TextButton(
                         onPressed: () {
                           print("Bouton En savoir plus");
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) => JeuPage()),
+                          );
                         },
                         style: TextButton.styleFrom(
                           textStyle: const TextStyle(

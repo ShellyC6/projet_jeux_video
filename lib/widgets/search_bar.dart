@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:projet_jeux_video/screens/recherche.dart';
 import '/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchBar extends StatefulWidget {
-  const SearchBar({super.key, required this.text});
+  SearchBar({super.key, required this.text});
 
   final String text;
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+  }
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -20,6 +28,7 @@ class _SearchBarState extends State<SearchBar> {
         children: <Widget>[
           Expanded(
             child: TextField(
+              controller: widget.myController,
               style: Theme.of(context).textTheme.bodyMedium,
               obscureText: false,
               textAlign: TextAlign.start,
@@ -34,7 +43,15 @@ class _SearchBarState extends State<SearchBar> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: SvgPicture.asset("res/svg/search.svg")
+            child: IconButton(
+              onPressed: (){
+                print("Bouton WishList");
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) => RecherchePage(texte: widget.myController.text,)),
+                );
+              },
+              icon: SvgPicture.asset("res/svg/search.svg"),
+              )
           ),
         ],
       ),

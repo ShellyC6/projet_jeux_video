@@ -20,6 +20,7 @@ class _LikesPageState extends State<LikesPage> {
         leading: IconButton(
           onPressed: (){
             print("Bouton Close");
+            Navigator.of(context).pop();
           },
           icon: SvgPicture.asset("res/svg/close.svg"),
         ),

@@ -5,7 +5,9 @@ import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
 
 class RecherchePage extends StatefulWidget {
-  const RecherchePage({super.key});
+  const RecherchePage({super.key, required this.texte});
+
+  final String texte;
 
   @override
   State<RecherchePage> createState() => _RecherchePageState();
@@ -20,6 +22,7 @@ class _RecherchePageState extends State<RecherchePage> {
         leading: IconButton(
           onPressed: (){
             print("Bouton Close");
+            Navigator.of(context).pop();
           },
           icon: SvgPicture.asset("res/svg/close.svg"),
         ),
@@ -32,7 +35,7 @@ class _RecherchePageState extends State<RecherchePage> {
         padding: const EdgeInsets.only(left:10, bottom: 10, right: 10, top:10),
         child: Column(
             children: <Widget>[
-              const SearchBar(text: "Stray"),
+              SearchBar(text: widget.texte),
               const SizedBox(height: 10),
               Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

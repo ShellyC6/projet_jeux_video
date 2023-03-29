@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import '/app_colors.dart';
 
 class MyTextButton extends StatelessWidget {
-  const MyTextButton({required this.type, required this.text});
+  const MyTextButton({required this.type, required this.text, required this.page});
 
   final bool type;  // false = full background  // true = empty background
   final String text;
+  final Widget page;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,9 @@ class MyTextButton extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   print("Bouton $text");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) => page),
+                  );
                 },
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.bodyLarge,
@@ -50,6 +54,9 @@ class MyTextButton extends StatelessWidget {
         child: TextButton(
           onPressed: (){
             print("Bouton $text");
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context) => page),
+            );
           },
           style: TextButton.styleFrom(
               textStyle: Theme.of(context).textTheme.bodyLarge,

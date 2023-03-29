@@ -20,6 +20,7 @@ class _WishlistPageState extends State<WishlistPage> {
         leading: IconButton(
           onPressed: (){
             print("Bouton Close");
+            Navigator.of(context).pop();
           },
           icon: SvgPicture.asset("res/svg/close.svg"),
         ),
