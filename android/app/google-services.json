@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1067413133046",
+    "project_id": "projet-jeux-videos",
+    "storage_bucket": "projet-jeux-videos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067413133046:android:848580526d341d6ed97ed7",
+        "android_client_info": {
+          "package_name": "com.example.projet_jeux_video"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067413133046-1aod22v7ve37he4abrqtf31jloh8ubq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6VtW-Z-XnGVF-VRNVz8OaAGuy7OcbTB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067413133046-1aod22v7ve37he4abrqtf31jloh8ubq9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1067413133046-dk8mcgbdfrjhhflnkejqv05d2v65dkhi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.projetjeuxvideo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
