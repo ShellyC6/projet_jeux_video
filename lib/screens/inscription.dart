@@ -3,17 +3,68 @@ import 'package:projet_jeux_video/screens/accueil.dart';
 import '/app_colors.dart';
 import '/widgets/my_text_field.dart';
 import '/widgets/my_text_button.dart';
+import 'package:firebase_core/firebase_core.dart';      // Pour se connecter à firebase
+import 'package:cloud_firestore/cloud_firestore.dart';  // Pour utiliser firestore
 
 class InscriptionPage extends StatefulWidget {
   final String title = "Inscription";
 
-  const InscriptionPage({super.key});
+  InscriptionPage({super.key});
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final mdpController = TextEditingController();
+  final mdp2Controller = TextEditingController();
+
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    nameController.dispose();
+    emailController.dispose();
+    mdpController.dispose();
+    mdp2Controller.dispose();
+  }
 
   @override
   State<InscriptionPage> createState() => _InscriptionPageState();
 }
 
 class _InscriptionPageState extends State<InscriptionPage> {
+
+  /*Future<bool> add() async {
+    return true;
+  }*/
+
+  // Ajoute l'utilisateur
+  Future<bool> add() async {
+    final db = FirebaseFirestore.instance;
+    print("-3");
+    // Vérification des textField
+      // Vérifier si l'utilisateur existe déjà
+      print("-2");
+      final querySnapshot = await db.collection("Users").where("mail", isEqualTo: widget.emailController.text).get();//.then(
+        //(querySnapshot){
+          print("-1");
+          if(querySnapshot.docs.isEmpty){
+            if(widget.nameController.text.isNotEmpty && widget.emailController.text.isNotEmpty && widget.mdpController.text.isNotEmpty && (widget.mdpController.text == widget.mdp2Controller.text)) {
+              print("-0");
+              final data = {
+                "nom": widget.nameController.text,
+                "mail": widget.emailController.text,
+                "mdp": widget.mdpController.text
+              };
+              await db.collection("Users").add(data);/*.then((documentSnapshot) =>
+                  print("Added Data with ID: ${documentSnapshot.id}"));*/
+              print("0");
+              return true;
+            }
+            print("1");
+          }
+          print("Erreur lors de l'inscription");
+          return false;
+        //};
+      //);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +89,16 @@ class _InscriptionPageState extends State<InscriptionPage> {
                 ),
               ),
               const SizedBox(height: 50),
-              const MyTextField(text: "Nom d'utilisateur", obscureText: false,),
+              MyTextField(text: "Nom d'utilisateur", obscureText: false, myController: widget.nameController,),
               const SizedBox(height: 10),
-              const MyTextField(text: "E-mail", obscureText: false,),
+              MyTextField(text: "E-mail", obscureText: false, myController: widget.emailController,),
               const SizedBox(height: 10),
-              const MyTextField(text: "Mot de passe", obscureText: true,),
+              MyTextField(text: "Mot de passe", obscureText: true, myController: widget.mdpController,),
               const SizedBox(height: 10),
-              const MyTextField(text: "Vérification du mot de passe", obscureText: true,),
+              MyTextField(text: "Vérification du mot de passe", obscureText: true, myController: widget.mdp2Controller,),
               const SizedBox(height: 70),
-              const MyTextButton(type: false, text: "S'inscrire", page: AccueilPage(),),
+              MyTextButton(type: false, text: "S'inscrire", page: AccueilPage(), f: add,),
+              Text("-> ${widget.nameController.text} <-"),
             ]
         ),
       ),

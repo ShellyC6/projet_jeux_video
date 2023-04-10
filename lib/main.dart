@@ -7,7 +7,8 @@ import 'screens/recherche.dart';
 import 'screens/wishlist.dart';
 import 'screens/likes.dart';
 import 'screens/jeu.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';      // Pour se connecter à firebase
+import 'package:cloud_firestore/cloud_firestore.dart';  // Pour utiliser firestore
 
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();  // Pour s'assurer que tout est bien lancé avant de démarrer

@@ -9,7 +9,6 @@ class SearchBar extends StatefulWidget {
   final String text;
   final myController = TextEditingController();
 
-  @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     myController.dispose();
@@ -45,7 +44,7 @@ class _SearchBarState extends State<SearchBar> {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: (){
-                print("Bouton WishList");
+                print("Bouton Recherche");
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) => RecherchePage(texte: widget.myController.text,)),
                 );
