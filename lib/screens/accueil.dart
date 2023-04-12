@@ -6,9 +6,12 @@ import '/app_colors.dart';
 import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
 import '/widgets/pub.dart';
+import '/user.dart';
 
 class AccueilPage extends StatefulWidget {
-  const AccueilPage({super.key});
+  const AccueilPage({super.key, required this.currentUser});
+
+  final User currentUser;
 
   @override
   State<AccueilPage> createState() => _AccueilPageState();
@@ -56,10 +59,10 @@ class _AccueilPageState extends State<AccueilPage> {
             const SizedBox(height: 30),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children:  const [
+                children:  [
                   Text(
-                    "Les meilleures ventes",
-                    style: TextStyle(
+                    "Les meilleures ventes ${widget.currentUser.name} <--",
+                    style: const TextStyle(
                       fontSize: 15,
                       fontFamily: "Proxima Nova",
                       color: AppColors.textColor,

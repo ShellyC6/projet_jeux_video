@@ -4,11 +4,14 @@ import '/app_colors.dart';
 import '/widgets/my_text_field.dart';
 import '/widgets/my_text_button.dart';
 import 'accueil.dart';
+import '/user.dart';
 
 class ConnexionPage extends StatefulWidget {
   final String title = "Connexion";
 
-  const ConnexionPage({super.key});
+  User currentUser = User(name: "", email: "");
+
+  ConnexionPage({super.key});
 
   @override
   State<ConnexionPage> createState() => _ConnexionPageState();
@@ -43,7 +46,7 @@ class _ConnexionPageState extends State<ConnexionPage> {
             const SizedBox(height: 10),
             const MyTextField(text: "Mot de passe", obscureText: true,),
             const SizedBox(height: 70),
-            MyTextButton(type: false, text: "Se connecter", page: AccueilPage(),),
+            MyTextButton(type: false, text: "Se connecter", page: AccueilPage(currentUser : widget.currentUser),),
             const SizedBox(height: 15),
             MyTextButton(type: true, text: "Créer un nouveau compte", page: InscriptionPage(),),
             Expanded(

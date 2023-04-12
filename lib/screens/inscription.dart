@@ -5,9 +5,11 @@ import '/widgets/my_text_field.dart';
 import '/widgets/my_text_button.dart';
 import 'package:firebase_core/firebase_core.dart';      // Pour se connecter à firebase
 import 'package:cloud_firestore/cloud_firestore.dart';  // Pour utiliser firestore
+import '/user.dart';
 
 class InscriptionPage extends StatefulWidget {
   final String title = "Inscription";
+  User currentUser = User(name: "nameOfTheGuy", email: "");
 
   InscriptionPage({super.key});
 
@@ -38,12 +40,17 @@ class _InscriptionPageState extends State<InscriptionPage> {
     if(querySnapshot.docs.isEmpty){
       // Vérification des textField
       if(widget.nameController.text.isNotEmpty && widget.emailController.text.isNotEmpty && widget.mdpController.text.isNotEmpty && (widget.mdpController.text == widget.mdp2Controller.text)) {
+        // Enregistrer les informations du nouvel utilisateur
         final data = {
           "nom": widget.nameController.text,
           "mail": widget.emailController.text,
           "mdp": widget.mdpController.text
         };
         await db.collection("Users").add(data);
+        // Connexion du nouvel utilisateur
+        print("Suppressions de l'utilisateur ${widget.currentUser.name}");
+        widget.currentUser = User(name: widget.nameController.text, email: widget.emailController.text);
+        print("Inscription de l'utilisateur ${widget.currentUser.name}");
         return true;
       }
     }
@@ -83,8 +90,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
               const SizedBox(height: 10),
               MyTextField(text: "Vérification du mot de passe", obscureText: true, myController: widget.mdp2Controller,),
               const SizedBox(height: 70),
-              MyTextButton(type: false, text: "S'inscrire", page: AccueilPage(), f: add,),
-              Text("-> ${widget.nameController.text} <-"),
+              MyTextButton(type: false, text: "S'inscrire", page: AccueilPage(currentUser: widget.currentUser,), f: add,),
             ]
         ),
       ),
