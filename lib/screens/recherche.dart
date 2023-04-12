@@ -53,11 +53,17 @@ class _RecherchePageState extends State<RecherchePage> {
                   ]
               ),
               const SizedBox(height: 10),
-              Apercu(detail: true),
-              const SizedBox(height: 10),
-              Apercu(detail: true),
-              const SizedBox(height: 10),
-              Apercu(detail: true),
+              Flexible(
+                child: ListView.separated(
+                  scrollDirection: Axis.vertical,
+                  //shrinkWrap: true,
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index){
+                    return const Apercu(detail: true);
+                  },
+                  separatorBuilder: (BuildContext context, int index) => const Divider(color: AppColors.bgColor,),
+                ),
+              ),
             ]
         ),
       ),

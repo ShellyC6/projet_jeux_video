@@ -15,7 +15,7 @@ class _ApercuState extends State<Apercu> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(7),
         child: Stack(
           children : <Widget>[
             if(widget.detail)

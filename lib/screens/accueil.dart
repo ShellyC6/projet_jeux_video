@@ -12,9 +12,10 @@ import '/user.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AccueilPage extends StatefulWidget {
-  const AccueilPage({super.key,});
+  AccueilPage({super.key,});
 
   //final User currentUser;
+  final List<String> gameNames = <String>['gameA', 'gameB', 'gameC'];
 
   @override
   State<AccueilPage> createState() => _AccueilPageState();
@@ -85,11 +86,17 @@ class _AccueilPageState extends State<AccueilPage> {
                 ]
             ),
             const SizedBox(height: 10),
-            Apercu(detail: true),
-            const SizedBox(height: 10),
-            /*Apercu(detail: true),
-            const SizedBox(height: 10),*/
-            Apercu(detail: true),
+            Flexible(
+              child: ListView.separated(
+                scrollDirection: Axis.vertical,
+                //shrinkWrap: true,
+                itemCount: 6,
+                itemBuilder: (BuildContext context, int index){
+                  return const Apercu(detail: true);
+                },
+                separatorBuilder: (BuildContext context, int index) => const Divider(color: AppColors.bgColor,),
+              ),
+            ),
           ]
         ),
       ),
