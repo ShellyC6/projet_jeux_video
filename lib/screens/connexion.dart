@@ -43,6 +43,11 @@ class _ConnexionPageState extends State<ConnexionPage> {
       return false;
     }
     context.read<UserBloc>().add(UserConnectEvent(name: "nom random", email: widget.emailController.text));
+
+    // Vider les textFields
+    widget.emailController.clear();
+    widget.mdpController.clear();
+
     return true;
   }
 

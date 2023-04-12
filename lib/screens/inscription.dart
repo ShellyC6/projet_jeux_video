@@ -54,6 +54,13 @@ class _InscriptionPageState extends State<InscriptionPage> {
         widget.currentUser = User(name: widget.nameController.text, email: widget.emailController.text);
         print("Inscription de l'utilisateur ${widget.currentUser.name}");*/
         context.read<UserBloc>().add(UserConnectEvent(name: widget.nameController.text, email: widget.emailController.text));
+
+        // Vider les textFields
+        widget.mdpController.clear();
+        widget.emailController.clear();
+        widget.nameController.clear();
+        widget.mdp2Controller.clear();
+
         return true;
       }
     }

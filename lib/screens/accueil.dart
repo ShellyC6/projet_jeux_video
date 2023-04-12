@@ -9,6 +9,7 @@ import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
 import '/widgets/pub.dart';
 import '/user.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AccueilPage extends StatefulWidget {
   const AccueilPage({super.key,});
@@ -25,7 +26,16 @@ class _AccueilPageState extends State<AccueilPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
-        automaticallyImplyLeading: false,
+        leading: BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) => IconButton(
+            onPressed: (){
+              print("Bouton Logout");
+              context.read<UserBloc>().add(const UserConnectEvent(name: "", email: ""));
+              Navigator.popUntil(context, (Route<dynamic> predicate) => predicate.isFirst);
+            },
+            icon: const Icon(FontAwesomeIcons.rightFromBracket)
+          ),
+        ),
         title: Text(
           'Accueil',
           style: Theme.of(context).textTheme.titleMedium,
@@ -80,11 +90,6 @@ class _AccueilPageState extends State<AccueilPage> {
             /*Apercu(detail: true),
             const SizedBox(height: 10),*/
             Apercu(detail: true),
-            BlocBuilder<UserBloc, UserState>(
-              builder: (context, state) => Text(
-                "Le nom de l'utilisateur est... ${context.read<UserBloc>().state.currentUser.name}"
-              )
-            ),
           ]
         ),
       ),
