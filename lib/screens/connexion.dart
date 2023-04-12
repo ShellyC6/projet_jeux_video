@@ -53,11 +53,9 @@ class _ConnexionPageState extends State<ConnexionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      /*appBar: AppBar(
-        title: Text(widget.title),
-      ),*/
-      body: Padding(
+    return Material(
+      color: AppColors.bgColor,
+      child: Padding(
         padding: const EdgeInsets.only(left:30, bottom: 10, right: 30, top:90),
         child: Column(
           children: <Widget>[
@@ -93,7 +91,6 @@ class _ConnexionPageState extends State<ConnexionPage> {
                     //alignment: Alignment.bottomCenter,
                     textStyle: Theme.of(context).textTheme.bodyLarge,
                     foregroundColor: AppColors.grey,
-
                   ),
                   child: const Text(
                     "Mot de passe oublié",
