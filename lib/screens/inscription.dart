@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projet_jeux_video/screens/accueil.dart';
+import 'package:projet_jeux_video/services/user/user_bloc.dart';
 import '/app_colors.dart';
 import '/widgets/my_text_field.dart';
 import '/widgets/my_text_button.dart';
@@ -9,7 +11,7 @@ import '/user.dart';
 
 class InscriptionPage extends StatefulWidget {
   final String title = "Inscription";
-  User currentUser = User(name: "nameOfTheGuy", email: "");
+  //User currentUser = User(name: "nameOfTheGuy", email: "");
 
   InscriptionPage({super.key});
 
@@ -48,9 +50,10 @@ class _InscriptionPageState extends State<InscriptionPage> {
         };
         await db.collection("Users").add(data);
         // Connexion du nouvel utilisateur
-        print("Suppressions de l'utilisateur ${widget.currentUser.name}");
+        /*print("Suppressions de l'utilisateur ${widget.currentUser.name}");
         widget.currentUser = User(name: widget.nameController.text, email: widget.emailController.text);
-        print("Inscription de l'utilisateur ${widget.currentUser.name}");
+        print("Inscription de l'utilisateur ${widget.currentUser.name}");*/
+        context.read<UserBloc>().add(UserConnectEvent(name: widget.nameController.text, email: widget.emailController.text));
         return true;
       }
     }
@@ -90,7 +93,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
               const SizedBox(height: 10),
               MyTextField(text: "Vérification du mot de passe", obscureText: true, myController: widget.mdp2Controller,),
               const SizedBox(height: 70),
-              MyTextButton(type: false, text: "S'inscrire", page: AccueilPage(currentUser: widget.currentUser,), f: add,),
+              MyTextButton(type: false, text: "S'inscrire", page: AccueilPage(), f: add,),
             ]
         ),
       ),

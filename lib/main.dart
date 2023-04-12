@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projet_jeux_video/services/user/user_bloc.dart';
 import 'app_theme.dart';
 import 'screens/connexion.dart';
 import 'screens/inscription.dart';
@@ -22,10 +24,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Game Store',
-      theme: AppThemeDataFactory.prepareThemeData(),
-      home: ConnexionPage(),
+    return BlocProvider(
+      create: (context) => UserBloc(),
+      child: MaterialApp(
+        title: 'Game Store',
+        theme: AppThemeDataFactory.prepareThemeData(),
+        home: ConnexionPage(),
+      ),
     );
   }
 }

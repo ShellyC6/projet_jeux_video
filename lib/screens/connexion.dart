@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projet_jeux_video/screens/inscription.dart';
+import '../services/user/user_bloc.dart';
 import '/app_colors.dart';
 import '/widgets/my_text_field.dart';
 import '/widgets/my_text_button.dart';
@@ -9,15 +12,40 @@ import '/user.dart';
 class ConnexionPage extends StatefulWidget {
   final String title = "Connexion";
 
-  User currentUser = User(name: "", email: "");
+  //User currentUser = User(name: "", email: "");
 
   ConnexionPage({super.key});
+
+  final emailController = TextEditingController();
+  final mdpController = TextEditingController();
+
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    mdpController.dispose();
+  }
 
   @override
   State<ConnexionPage> createState() => _ConnexionPageState();
 }
 
 class _ConnexionPageState extends State<ConnexionPage> {
+
+  Future<bool> connect() async {
+    final db = FirebaseFirestore.instance;
+
+    final querySnapshot = await db.collection("Users")
+        .where("mail", isEqualTo: widget.emailController.text)
+        .where("mdp", isEqualTo: widget.mdpController.text)
+        .get();
+    if(querySnapshot.docs.isEmpty){
+      print("Erreur lors de la connexion");
+      return false;
+    }
+    context.read<UserBloc>().add(UserConnectEvent(name: "nom random", email: widget.emailController.text));
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +70,11 @@ class _ConnexionPageState extends State<ConnexionPage> {
               ),
             ),
             const SizedBox(height: 30),
-            const MyTextField(text: "E-mail", obscureText: false,),
+            MyTextField(text: "E-mail", obscureText: false, myController: widget.emailController,),
             const SizedBox(height: 10),
-            const MyTextField(text: "Mot de passe", obscureText: true,),
+            MyTextField(text: "Mot de passe", obscureText: true, myController: widget.mdpController,),
             const SizedBox(height: 70),
-            MyTextButton(type: false, text: "Se connecter", page: AccueilPage(currentUser : widget.currentUser),),
+            MyTextButton(type: false, text: "Se connecter", page: AccueilPage(), f: connect,),
             const SizedBox(height: 15),
             MyTextButton(type: true, text: "Créer un nouveau compte", page: InscriptionPage(),),
             Expanded(

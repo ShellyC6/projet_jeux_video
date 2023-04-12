@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projet_jeux_video/screens/likes.dart';
 import 'package:projet_jeux_video/screens/wishlist.dart';
+import '../services/user/user_bloc.dart';
 import '/app_colors.dart';
 import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
@@ -9,9 +11,9 @@ import '/widgets/pub.dart';
 import '/user.dart';
 
 class AccueilPage extends StatefulWidget {
-  const AccueilPage({super.key, required this.currentUser});
+  const AccueilPage({super.key,});
 
-  final User currentUser;
+  //final User currentUser;
 
   @override
   State<AccueilPage> createState() => _AccueilPageState();
@@ -59,10 +61,10 @@ class _AccueilPageState extends State<AccueilPage> {
             const SizedBox(height: 30),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children:  [
+                children:  const [
                   Text(
-                    "Les meilleures ventes ${widget.currentUser.name} <--",
-                    style: const TextStyle(
+                    "Les meilleures ventes",
+                    style: TextStyle(
                       fontSize: 15,
                       fontFamily: "Proxima Nova",
                       color: AppColors.textColor,
@@ -75,9 +77,14 @@ class _AccueilPageState extends State<AccueilPage> {
             const SizedBox(height: 10),
             Apercu(detail: true),
             const SizedBox(height: 10),
+            /*Apercu(detail: true),
+            const SizedBox(height: 10),*/
             Apercu(detail: true),
-            const SizedBox(height: 10),
-            Apercu(detail: true),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) => Text(
+                "Le nom de l'utilisateur est... ${context.read<UserBloc>().state.currentUser.name}"
+              )
+            ),
           ]
         ),
       ),
