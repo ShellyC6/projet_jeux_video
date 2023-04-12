@@ -30,39 +30,25 @@ class InscriptionPage extends StatefulWidget {
 
 class _InscriptionPageState extends State<InscriptionPage> {
 
-  /*Future<bool> add() async {
-    return true;
-  }*/
-
   // Ajoute l'utilisateur
   Future<bool> add() async {
     final db = FirebaseFirestore.instance;
-    print("-3");
-    // Vérification des textField
-      // Vérifier si l'utilisateur existe déjà
-      print("-2");
-      final querySnapshot = await db.collection("Users").where("mail", isEqualTo: widget.emailController.text).get();//.then(
-        //(querySnapshot){
-          print("-1");
-          if(querySnapshot.docs.isEmpty){
-            if(widget.nameController.text.isNotEmpty && widget.emailController.text.isNotEmpty && widget.mdpController.text.isNotEmpty && (widget.mdpController.text == widget.mdp2Controller.text)) {
-              print("-0");
-              final data = {
-                "nom": widget.nameController.text,
-                "mail": widget.emailController.text,
-                "mdp": widget.mdpController.text
-              };
-              await db.collection("Users").add(data);/*.then((documentSnapshot) =>
-                  print("Added Data with ID: ${documentSnapshot.id}"));*/
-              print("0");
-              return true;
-            }
-            print("1");
-          }
-          print("Erreur lors de l'inscription");
-          return false;
-        //};
-      //);
+    // Vérifier si l'utilisateur existe déjà
+    final querySnapshot = await db.collection("Users").where("mail", isEqualTo: widget.emailController.text).get();
+    if(querySnapshot.docs.isEmpty){
+      // Vérification des textField
+      if(widget.nameController.text.isNotEmpty && widget.emailController.text.isNotEmpty && widget.mdpController.text.isNotEmpty && (widget.mdpController.text == widget.mdp2Controller.text)) {
+        final data = {
+          "nom": widget.nameController.text,
+          "mail": widget.emailController.text,
+          "mdp": widget.mdpController.text
+        };
+        await db.collection("Users").add(data);
+        return true;
+      }
+    }
+    print("Erreur lors de l'inscription");
+    return false;
   }
 
   @override
