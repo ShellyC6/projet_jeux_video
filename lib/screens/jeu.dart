@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../services/like_button/like_bloc.dart';
+import '../services/wish_button/wish_bloc.dart';
 import '/app_colors.dart';
 import '/widgets/apercu.dart';
 
@@ -17,8 +18,15 @@ class JeuPage extends StatefulWidget {
 class _JeuPageState extends State<JeuPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LikeBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LikeBloc>(
+          create: (context) => LikeBloc(),
+        ),
+        BlocProvider<WishBloc>(
+          create: (context) => WishBloc(),
+        ),
+      ],
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.bgColor,
@@ -38,12 +46,17 @@ class _JeuPageState extends State<JeuPage> {
                       : SvgPicture.asset("res/svg/like.svg"),
                 ),
               ),
-              IconButton(
-                onPressed: (){
-                  print("Bouton WishList");
-                },
-                icon: SvgPicture.asset("res/svg/whishlist.svg"),
-              )
+              BlocBuilder<WishBloc, WishState>(
+                builder: (context, state) => IconButton(
+                  onPressed: (){
+                    print("Bouton WishList");
+                    context.read<WishBloc>().add(WishClickEvent());
+                  },
+                  icon: (state as WishInitialState).isWished
+                      ? SvgPicture.asset("res/svg/whishlist_full.svg")
+                      : SvgPicture.asset("res/svg/whishlist.svg"),
+                ),
+              ),
             ],
           ),
           body: Stack(
