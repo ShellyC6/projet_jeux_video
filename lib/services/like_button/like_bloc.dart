@@ -7,6 +7,7 @@ part 'like_state.dart';
 class LikeBloc extends Bloc<LikeEvent, LikeState> {
   LikeBloc() : super(const LikeInitialState(isLiked: false)) {
    on<LikeClickEvent>((event, emit) {
+     print("isLiked? ${state.toString()}");
     emit(LikeInitialState(isLiked: !(state as LikeInitialState).isLiked));
    });
   }

@@ -8,10 +8,12 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserState(currentUser: User(name: "c'est mon nom", email: "c'est mon mail"))){
     on<UserConnectEvent>((event, emit) {
+      print("before : ${state.currentUser.email}");
       emit(UserState(
           currentUser: User(name: event.name, email: event.email)
       ));
-      //print("nom : ${state.currentUser.name}");
+      print("after : ${event.email}");
+      print("mail : ${state.currentUser.email}");
     });
   }
 }

@@ -30,19 +30,19 @@ class _AccueilPageState extends State<AccueilPage> {
           builder: (context, state) => IconButton(
             onPressed: (){
               print("Bouton Logout");
-              context.read<UserBloc>().add(const UserConnectEvent(name: "", email: ""));
+              context.read<UserBloc>().add(const UserConnectEvent(name: "-", email: "-"));
               Navigator.popUntil(context, (Route<dynamic> predicate) => predicate.isFirst);
             },
             icon: const Icon(FontAwesomeIcons.rightFromBracket)
           ),
         ),
-        title: Text(
+        title: /*Text(
           'Accueil',
           style: Theme.of(context).textTheme.titleMedium,
-        ),
-        /*BlocBuilder<UserBloc, UserState>(
-            builder: (context, state) => Text(state.currentUser.email)
         ),*/
+        BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) => Text(state.currentUser.email)
+        ),
         actions: <Widget>[
           IconButton(
               onPressed: (){
@@ -88,7 +88,7 @@ class _AccueilPageState extends State<AccueilPage> {
                 ]
             ),
             const SizedBox(height: 10),
-            FutureBuilder(
+            /*FutureBuilder(
               future: GetBestGames.getBestGames(),
               builder: (context, snapshot){
                 if(!snapshot.hasData) return const Text("Chargement du jeu en cours...");
@@ -104,7 +104,7 @@ class _AccueilPageState extends State<AccueilPage> {
                   ),
                 );
               }
-            )
+            )*/
           ]
         ),
       ),
