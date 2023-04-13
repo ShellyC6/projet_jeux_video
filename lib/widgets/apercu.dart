@@ -6,7 +6,13 @@ import '/find_game.dart';
 
 class Apercu extends StatefulWidget {
   Apercu({super.key, required this.detail, required this.id,}){
-    FindGame.findGame(id: id);
+    try{
+      FindGame.findGame(id: id);
+    }
+    catch(e){
+      print(e);
+      id = 0;
+    }
   }
 
   final bool detail;
@@ -21,35 +27,36 @@ class _ApercuState extends State<Apercu> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(7),
+    try{
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(7),
         child: StreamBuilder(
-          stream: db.collection("Games").where("id", isEqualTo: widget.id).snapshots(),
-          builder: (context, snapshot) {
-            if(!snapshot.hasData) return const Text("Erreur lors du chargement du jeu");
-            return Stack(
-              children : <Widget>[
-                /*Image.network(
+            stream: db.collection("Games").where("id", isEqualTo: widget.id).snapshots(),
+            builder: (context, snapshot) {
+              if(!snapshot.hasData) return const Text("Erreur lors du chargement du jeu");
+              return Stack(
+                children : <Widget>[
+                  /*Image.network(
                   snapshot.data!.docs.first.get("background"),
                   width: double.infinity,
                   height: 100,
                   fit: BoxFit.cover,
                 ),*/
-                if(widget.detail)
-                  Image.network(
-                    snapshot.data!.docs.first.get("background"),
-                    width: double.infinity,
-                    height: 100,
-                    fit: BoxFit.cover,
-                  )
-                else
-                  Image.network(
-                    snapshot.data!.docs.first.get("background"),
-                    width: double.infinity,
-                    height: 120,
-                    fit: BoxFit.cover,
-                  ),
-                Row(
+                  if(widget.detail)
+                    Image.network(
+                      snapshot.data!.docs.first.get("background"),
+                      width: double.infinity,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    )
+                  else
+                    Image.network(
+                      snapshot.data!.docs.first.get("background"),
+                      width: double.infinity,
+                      height: 120,
+                      fit: BoxFit.cover,
+                    ),
+                  Row(
                     children: <Widget>[
                       Expanded(
                         child: Row(
@@ -132,9 +139,13 @@ class _ApercuState extends State<Apercu> {
                     ],
                   ),
                 ],
-            );
-          }
-          ),
-    );
+              );
+            }
+        ),
+      );
+    }
+    catch(e){
+      return Text("Erreur lors du chargement du jeu");
+    }
   }
 }

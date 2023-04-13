@@ -8,14 +8,13 @@ import '/app_colors.dart';
 import '/widgets/search_bar.dart';
 import '/widgets/apercu.dart';
 import '/widgets/pub.dart';
-import '/user.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '/get_best_games.dart';
 
 class AccueilPage extends StatefulWidget {
   AccueilPage({super.key,});
 
-  //final User currentUser;
-  final List<String> gameNames = <String>['gameA', 'gameB', 'gameC'];
+  //final List<int> gameIds = GetBestGames.getBestGames();
 
   @override
   State<AccueilPage> createState() => _AccueilPageState();
@@ -86,17 +85,23 @@ class _AccueilPageState extends State<AccueilPage> {
                 ]
             ),
             const SizedBox(height: 10),
-            Flexible(
-              child: ListView.separated(
-                scrollDirection: Axis.vertical,
-                //shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (BuildContext context, int index){
-                  return Apercu(detail: true, id: 730);
-                },
-                separatorBuilder: (BuildContext context, int index) => const Divider(color: AppColors.bgColor,),
-              ),
-            ),
+            FutureBuilder(
+              future: GetBestGames.getBestGames(),
+              builder: (context, snapshot){
+                if(!snapshot.hasData) return const Text("Chargement du jeu en cours...");
+                return Flexible(
+                  child: ListView.separated(
+                    scrollDirection: Axis.vertical,
+                    //shrinkWrap: true,
+                    itemCount: snapshot.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index){
+                      return Apercu(detail: true, id: snapshot.data![index]);
+                    },
+                    separatorBuilder: (BuildContext context, int index) => const Divider(color: AppColors.bgColor,),
+                  ),
+                );
+              }
+            )
           ]
         ),
       ),

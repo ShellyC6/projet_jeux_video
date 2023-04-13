@@ -29,7 +29,7 @@ abstract class FindGame{
             "header": data['$id']['data']['header_image'],
           };
           await db.collection("Games").add(data2);
-        }else{
+        }else if(data['$id']['data']['price_overview']!=null){
           final data2 = {
             "id": id,
             "nom": data['$id']['data']['name'],
@@ -41,11 +41,24 @@ abstract class FindGame{
             "header": data['$id']['data']['header_image'],
           };
           await db.collection("Games").add(data2);
+        }else{
+          final data2 = {
+            "id": id,
+            "nom": data['$id']['data']['name'],
+            "editeur": data['$id']['data']['publishers'][0],
+            "prix": "Prix inconnu",
+            "image": 'https://media.senscritique.com/media/000017048549/source_big/La_Grande_Aventure_LEGO_Le_Jeu_video.jpg',
+            "description": data['$id']['data']['short_description'],
+            "background": data['$id']['data']['background'],
+            "header": data['$id']['data']['header_image'],
+          };
+          await db.collection("Games").add(data2);
         }
 
         //print(data['$id']['data']['name']);
         //print(data ['$id']['data']['detailed_description']);
       } else {
+        print("Game $id not found");
         throw Exception('Failed to fetch game name');
       }
     }
