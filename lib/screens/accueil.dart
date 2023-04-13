@@ -40,6 +40,9 @@ class _AccueilPageState extends State<AccueilPage> {
           'Accueil',
           style: Theme.of(context).textTheme.titleMedium,
         ),
+        /*BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) => Text(state.currentUser.email)
+        ),*/
         actions: <Widget>[
           IconButton(
               onPressed: (){
