@@ -92,7 +92,7 @@ class _AccueilPageState extends State<AccueilPage> {
                 //shrinkWrap: true,
                 itemCount: 6,
                 itemBuilder: (BuildContext context, int index){
-                  return Apercu(detail: true, id: 0);
+                  return Apercu(detail: true, id: 400);
                 },
                 separatorBuilder: (BuildContext context, int index) => const Divider(color: AppColors.bgColor,),
               ),

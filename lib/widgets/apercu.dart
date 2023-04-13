@@ -2,12 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_jeux_video/screens/jeu.dart';
 import '/app_colors.dart';
+import '/find_game.dart';
 
 class Apercu extends StatefulWidget {
-  Apercu({super.key, required this.detail, required this.id,});
+  Apercu({super.key, required this.detail, required this.id,}){
+    FindGame.findGame(id: id);
+  }
 
   final bool detail;
-  final int id;
+  int id;
 
   @override
   State<Apercu> createState() => _ApercuState();
@@ -20,26 +23,33 @@ class _ApercuState extends State<Apercu> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(7),
-        child: Stack(
-          children : <Widget>[
-            if(widget.detail)
-              Image.asset(
-                "res/img/apercu_recherche.png",
-                width: double.infinity,
-                height: 100,
-                fit: BoxFit.cover,
-              )
-            else
-              Image.asset(
-                "res/img/apercu_description.png",
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            StreamBuilder(
-              stream: db.collection("Games").where("id", isEqualTo: widget.id).snapshots(),
-                builder: (context, snapshot) {
-                  if(!snapshot.hasData) return const Text("Erreur lors du chargement du jeu");
-                  return Row(
+        child: StreamBuilder(
+          stream: db.collection("Games").where("id", isEqualTo: widget.id).snapshots(),
+          builder: (context, snapshot) {
+            if(!snapshot.hasData) return const Text("Erreur lors du chargement du jeu");
+            return Stack(
+              children : <Widget>[
+                /*Image.network(
+                  snapshot.data!.docs.first.get("background"),
+                  width: double.infinity,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),*/
+                if(widget.detail)
+                  Image.network(
+                    snapshot.data!.docs.first.get("background"),
+                    width: double.infinity,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  )
+                else
+                  Image.network(
+                    snapshot.data!.docs.first.get("background"),
+                    width: double.infinity,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                Row(
                     children: <Widget>[
                       Expanded(
                         child: Row(
@@ -69,7 +79,7 @@ class _ApercuState extends State<Apercu> {
                                 if(widget.detail)(const SizedBox(height: 10)),
                                 if(widget.detail)(
                                     Text(
-                                      "Prix : ${snapshot.data!.docs.first.get("prix")} €",
+                                      "Prix : ${snapshot.data!.docs.first.get("prix")}",
                                       style: const TextStyle(
                                         fontSize: 12,
                                         fontFamily: "Proxima Nova",
@@ -120,11 +130,11 @@ class _ApercuState extends State<Apercu> {
                           ),
                         ),
                     ],
-                  );
-                },
-            ),
-        ],
-      )
+                  ),
+                ],
+            );
+          }
+          ),
     );
   }
 }
