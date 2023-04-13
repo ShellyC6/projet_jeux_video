@@ -46,7 +46,9 @@ class _InscriptionPageState extends State<InscriptionPage> {
         final data = {
           "nom": widget.nameController.text,
           "mail": widget.emailController.text,
-          "mdp": widget.mdpController.text
+          "mdp": widget.mdpController.text,
+          "likes": [],
+          "wishlist": [],
         };
         await db.collection("Users").add(data);
         // Connexion du nouvel utilisateur
