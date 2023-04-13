@@ -59,7 +59,7 @@ class _RecherchePageState extends State<RecherchePage> {
                   //shrinkWrap: true,
                   itemCount: 6,
                   itemBuilder: (BuildContext context, int index){
-                    return const Apercu(detail: true);
+                    return Apercu(detail: true, id: 0);
                   },
                   separatorBuilder: (BuildContext context, int index) => const Divider(color: AppColors.bgColor,),
                 ),

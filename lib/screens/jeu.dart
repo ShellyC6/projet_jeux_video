@@ -1,5 +1,6 @@
 //import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,13 +10,17 @@ import '/app_colors.dart';
 import '/widgets/apercu.dart';
 
 class JeuPage extends StatefulWidget {
-  const JeuPage({super.key});
+  const JeuPage({super.key, required this.id});
+
+  final int id;
 
   @override
   State<JeuPage> createState() => _JeuPageState();
 }
 
 class _JeuPageState extends State<JeuPage> {
+  final db = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -69,9 +74,9 @@ class _JeuPageState extends State<JeuPage> {
               ),
               Column(
                 children: <Widget>[
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(left:20, right: 20, top:250),
-                    child: Apercu(detail: false),
+                    child: Apercu(detail: false, id: 0),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:10, right: 10, top:20),
@@ -132,7 +137,15 @@ class _JeuPageState extends State<JeuPage> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        const Text("test really Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."),
+                        StreamBuilder(
+                          stream: db.collection("Games").where("id", isEqualTo: widget.id).snapshots(),
+                          builder: (context, snapshot){
+                            if(!snapshot.hasData) return const Text("Erreur lors du chargement du jeu");
+                            return Text(
+                              snapshot.data!.docs.first.get("description") ?? "Erreur",
+                            );
+                          }
+                        ),
                       ],
                     ),
                   ),

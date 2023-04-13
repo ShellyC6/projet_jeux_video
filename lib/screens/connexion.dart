@@ -7,7 +7,6 @@ import '/app_colors.dart';
 import '/widgets/my_text_field.dart';
 import '/widgets/my_text_button.dart';
 import 'accueil.dart';
-import '/user.dart';
 
 class ConnexionPage extends StatefulWidget {
   final String title = "Connexion";

@@ -58,7 +58,7 @@ class Pub extends StatelessWidget {
                                   onPressed: (){
                                     print("Bouton En Savoir Plus");
                                     Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (BuildContext context) => const JeuPage()),
+                                      MaterialPageRoute(builder: (BuildContext context) => const JeuPage(id: 0)),
                                     );
                                   },
                                   style: TextButton.styleFrom(

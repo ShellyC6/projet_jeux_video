@@ -32,13 +32,13 @@ class _LikesPageState extends State<LikesPage> {
       body: Padding(
         padding: const EdgeInsets.only(left:10, bottom: 10, right: 10, top:10),
         child: Column(
-            children: const <Widget>[
+            children: <Widget>[
               SizedBox(height: 10),
-              Apercu(detail: true),
+              Apercu(detail: true, id: 0),
               SizedBox(height: 10),
-              Apercu(detail: true),
+              Apercu(detail: true, id: 0),
               SizedBox(height: 10),
-              Apercu(detail: true),
+              Apercu(detail: true, id: 0),
             ]
         ),
       ),
