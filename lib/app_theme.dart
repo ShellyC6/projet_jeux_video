@@ -23,17 +23,17 @@ class AppThemeDataFactory {
       ),
       // TextFields and buttons
       bodyLarge: TextStyle(
-        fontSize: 15,
+        fontSize: 16,
         fontFamily: "Proxima Nova",
         color: AppColors.textColor,
       ),
       bodyMedium: TextStyle(
-        fontSize: 13,
+        fontSize: 14,
         fontFamily: "Proxima Nova",
         color: AppColors.textColor,
       ),
       bodySmall: TextStyle(
-        fontSize: 12,
+        fontSize: 13,
         fontFamily: "Proxima Nova",
         color: AppColors.textColor,
       ),
